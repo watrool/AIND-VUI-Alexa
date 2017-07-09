@@ -11,6 +11,6 @@ module.exports = {
         "The first work that is now generally recognized as AI was done by Warren McCulloch and Walter Pitts in 1943.",
         "In 1958, John McCarthy defined the high-level language Lisp, which was to become the dominant AI programming language for the next 30 years.",
         "James Slagle’s SAINT program (1963) was able to solve closed-form calculus integration problems typical of first-year college courses.",
-        "In 2015, Google DeepMind designed the program named AlphaGo which defeated world Go game champion Ke Jie."
+        "In 2017, Google DeepMind designed the program named AlphaGo which defeated world Go game champion Ke Jie."
     ]
 }

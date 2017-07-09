@@ -26,7 +26,7 @@ var languageStrings = {
             "HELP_MESSAGE": "You can say tell me a fact, or, you can say exit... What can I help you with?",
             "HELP_REPROMPT": "What can I help you with?",
             "STOP_MESSAGE": "Goodbye!",
-            "REPROMPT_MESSAGE": "Do you need more AI facts?"
+            "REPROMPT_MESSAGE": "Do you need more AI facts? You can ask for a fact by saying 'tell me an AI fact in 2017'"
         }
     }
 };
@@ -76,18 +76,14 @@ var handlers = {
     },
     'GetNewYearFactIntent': function () {
         //TODO your code here
-        var factArr = this.t('FACTS');
         var year = this.event.request.intent.slots.FACT_YEAR.value;
-        console.log(year);
-        for (var i = 0; i < factArr.length; i++) {
-          if (factArr[i].indexOf(year) !== -1) {
-            const speechOutput = this.t("GET_FACT_MESSAGE") + factArr[i];
-            this.emit(':askWithCard', speechOutput, this.t("REPROMPT_MESSAGE"), this.t("SKILL_NAME"), factArr[i]);
-            return;
-          }
-        }
+        var factArr = this.t('FACTS').filter(fact => fact.indexOf(year) !== -1);
+        factArr = factArr.length > 0 ? factArr : this.t('FACTS');
+        var randomFact = randomPhrase(factArr);
 
-        this.emit('GetFact');
+        // Create speech output
+        var speechOutput = randomPhrase(this.t("GET_FACT_MESSAGE")) + randomFact;
+        this.emit(':askWithCard', speechOutput, this.t("REPROMPT_MESSAGE"), this.t("SKILL_NAME"), randomFact);
     },
     'AMAZON.HelpIntent': function () {
         var speechOutput = this.t("HELP_MESSAGE");
