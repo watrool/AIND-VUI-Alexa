@@ -3,7 +3,11 @@ var Alexa = require('alexa-sdk');
 var APP_ID = undefined;  // can be replaced with your app ID if publishing
 var facts = require('./facts');
 var GET_FACT_MSG_EN = [
-    "Here's your fact: "
+    "Here's your fact: ",
+    "I find this one: ",
+    "Fact time: ",
+    "AI history time: ",
+    "Hear what I got: "
 ]
 // Test hooks - do not remove!
 exports.GetFactMsg = GET_FACT_MSG_EN;
@@ -18,10 +22,11 @@ var languageStrings = {
         "translation": {
             "FACTS": facts.FACTS_EN,
             "SKILL_NAME": "My History Facts",  // OPTIONAL change this to a more descriptive name
-            "GET_FACT_MESSAGE": GET_FACT_MSG_EN[0],
+            "GET_FACT_MESSAGE": GET_FACT_MSG_EN,
             "HELP_MESSAGE": "You can say tell me a fact, or, you can say exit... What can I help you with?",
             "HELP_REPROMPT": "What can I help you with?",
-            "STOP_MESSAGE": "Goodbye!"
+            "STOP_MESSAGE": "Goodbye!",
+            "REPROMPT_MESSAGE": "Do you need more AI facts?"
         }
     }
 };
@@ -41,7 +46,7 @@ exports.handler = function (event, context, callback) {
 
 /*
     TODO (Part 2) add an intent for specifying a fact by year named 'GetNewYearFactIntent'
-    TODO (Part 2) provide a function for the new intent named 'GetYearFact' 
+    TODO (Part 2) provide a function for the new intent named 'GetYearFact'
         that emits a randomized fact that includes the year requested by the user
         - if such a fact is not available, tell the user this and provide an alternative fact.
     TODO (Part 3) Keep the session open by providing the fact with :askWithCard instead of :tellWithCard
@@ -66,11 +71,23 @@ var handlers = {
         var randomFact = randomPhrase(factArr);
 
         // Create speech output
-        var speechOutput = this.t("GET_FACT_MESSAGE") + randomFact;
-        this.emit(':tellWithCard', speechOutput, this.t("SKILL_NAME"), randomFact)
+        var speechOutput = randomPhrase(this.t("GET_FACT_MESSAGE")) + randomFact;
+        this.emit(':askWithCard', speechOutput, this.t("REPROMPT_MESSAGE"), this.t("SKILL_NAME"), randomFact);
     },
     'GetNewYearFactIntent': function () {
         //TODO your code here
+        var factArr = this.t('FACTS');
+        var year = this.event.request.intent.slots.FACT_YEAR.value;
+        console.log(year);
+        for (var i = 0; i < factArr.length; i++) {
+          if (factArr[i].indexOf(year) !== -1) {
+            const speechOutput = this.t("GET_FACT_MESSAGE") + factArr[i];
+            this.emit(':askWithCard', speechOutput, this.t("REPROMPT_MESSAGE"), this.t("SKILL_NAME"), factArr[i]);
+            return;
+          }
+        }
+
+        this.emit('GetFact');
     },
     'AMAZON.HelpIntent': function () {
         var speechOutput = this.t("HELP_MESSAGE");

@@ -2,3 +2,38 @@ GetNewFactIntent a fact
 GetNewFactIntent tell me a fact
 GetNewFactIntent give me a fact
 GetNewFactIntent give me something
+GetNewFactIntent an AI fact
+GetNewFactIntent an AI history fact
+GetNewFactIntent information about AI history
+GetNewFactIntent tell me an AI fact
+GetNewFactIntent tell me an AI history fact
+GetNewFactIntent tell me something about AI
+GetNewFactIntent tell me something about AI history
+GetNewFactIntent give me an AI fact
+GetNewFactIntent give me an AI history fact
+GetNewFactIntent give me something about AI
+GetNewFactIntent give me something about AI history
+GetNewFactIntent teach me some AI history
+GetNewFactIntent teach me an AI fact
+GetNewFactIntent teach me something about AI
+GetNewFactIntent teach me something about AI history
+GetNewYearFactIntent a fact in {FACT_YEAR}
+GetNewYearFactIntent tell me a fact in {FACT_YEAR}
+GetNewYearFactIntent give me a fact in {FACT_YEAR}
+GetNewYearFactIntent give me something in {FACT_YEAR}
+GetNewYearFactIntent an AI fact in {FACT_YEAR}
+GetNewYearFactIntent an AI history fact in {FACT_YEAR}
+GetNewYearFactIntent information about AI history in {FACT_YEAR}
+GetNewYearFactIntent tell me an AI fact in {FACT_YEAR}
+GetNewYearFactIntent tell me an AI history fact in {FACT_YEAR}
+GetNewYearFactIntent tell me something about AI in {FACT_YEAR}
+GetNewYearFactIntent tell me something about AI history in {FACT_YEAR}
+GetNewYearFactIntent give me an AI fact in {FACT_YEAR}
+GetNewYearFactIntent give me an AI history fact in {FACT_YEAR}
+GetNewYearFactIntent give me something about AI in {FACT_YEAR}
+GetNewYearFactIntent give me something about AI history in {FACT_YEAR}
+GetNewYearFactIntent teach me some AI history in {FACT_YEAR}
+GetNewYearFactIntent teach me an AI fact in {FACT_YEAR}
+GetNewYearFactIntent teach me something about AI in {FACT_YEAR}
+GetNewYearFactIntent teach me something about AI history in {FACT_YEAR}
+GetNewYearFactIntent give me an AI history fact in {FACT_YEAR}
